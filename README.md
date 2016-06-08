@@ -1,6 +1,15 @@
 # Kurzanleitung zu Gnuplot 5
 Eine kurze Einführung in die Verwendung von Gnuplot 5 für Physiker.
 
+## Inhalt
+
+- [Motivation](#motivation)
+- [Gnuplot installieren und starten](#gnuplot-installieren-und-starten)
+- [ Die Daten begutachten](#die-daten-begutachten)
+- [Das Diagramm verbessern](#das-diagramm-verbessern)
+- [Das Diagramm als Bilddatei abspeichern](#das-diagramm-als-bilddatei-abspeichern)
+- [Fehlerbalken benutzen](#fehlerbalken-benutzen)
+
 ## Motivation
 
 Mit der Version 5 hat Gnuplot einige Änderungen bei der Syntax erfahren. Im Internet findet man zwar viele Anleitungen, die einem die Nutzung von Gnuplot erklären, leider beziehen sich diese noch auf Version 4.x. Besonders bei Fehlerbalken und dem Fitten von Funktionen kommt es zu Fehlern, wenn man die Gnuplot 4 Syntax in Gnuplot 5 verwendet. Diese Anleitung bezieht sich nur auf Gnuplot 5 und richtet sich ein Einsteiger, die vorher noch nicht mit Gnuplot gearbeitet haben.

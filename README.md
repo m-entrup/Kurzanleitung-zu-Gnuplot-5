@@ -76,6 +76,7 @@ plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
 ```
 
 ![Verbessertes Diagramm von EELS-Spektrum_reduced.csv](Bilder/EELS-Spektrum_reduced.csv.2.png)
+Vergleiche [EELS-Kohlenstoff1.plt][https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff1.plt]
 
 ## Das Diagramm als Bilddatei abspeichern
 
@@ -83,7 +84,7 @@ Dieser Schritt ist ganz einfach, wenn man die grafische Oberfläche verwendet. I
 
 Eine weitere Möglichkeit bietet der Befehl ``set terminal``. Man sollte sich zuerst vergewissern, welche Terminals installiert sind. Dazu ruft man ``help terminal`` auf. In dieser Anleitung werde ich mich auf das Terminal *png* beschränken.
 
-```gnuplot
+```Gnuplot
 set encoding utf8
 
 set title 'EEL Spektrum der Kohlenstoff K-Kante'
@@ -109,6 +110,60 @@ plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
 # Die Datei wird geschlossen, damit man sie Problemlos ansehen kann.
 unset output
 ```
+
+Vergleiche [EELS-Kohlenstoff2.plt][https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff2.plt]
+
+## Fehlerbalken benutzen
+
+Messwerte sind immer mit Unsicherheiten behaftet. Um diese grafisch darzustellen, benutzt man in Gnuplot Fehlerbalken.
+
+Der Datensatz *EELS-Spektrum_err.csv* enthäkt eine zusätzliche Spalte mit den Unsicherheiten der y-Werte. Das folgende Beispiel zeigt, wie man variable und Konstante Unsicherheiten in Gnuplot nutzt.
+
+```Gnuplot
+set encoding utf8
+
+set title 'EEL Spektrum der Kohlenstoff K-Kante'
+set xlabel 'Energieverlust [eV]'
+set ylabel 'Intensität [a.u.]'
+set key inside top left
+
+set loadpath './config'
+load 'xyborder.cfg'
+load 'grid.cfg'
+
+# Der Parameter 'with' ermöglicht die Angabe des Diagramm-Typs (hier: y-Fehlerbalken).
+# 'yerrorbars' erwartet einen Datensatz mit 3 Spalten, was bei 'EELS-Spektrum_err.csv' zutrifft.
+plot 'Daten/EELS-Spektrum_err.csv' with yerrorbars title 'Messung 1 mit Fehlerbalken'
+```
+
+![Diagramm mit Fehlerbalken für die y-Werte](Bilder/EELS-Kohlenstoff_Fehlerbalken.1.png)
+Vergleiche [EELS-Kohlenstoff_Fehlerbalken1.plt][https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff_Fehlerbalken1.plt]
+
+### X-Y-Fehlerbalken
+
+Für zusätzliche Fehlerbalken für die X-Werte müssen wir den Diagramm-Typ ``xyerrorbars`` verwenden. Dieser erwartet einen Datensatz mit 4 Spalten, den wir mit Hilfe des Parameters ``using`` generieren.
+
+```Gnuplot
+# Es wird nur die geänderte Code-Zeile gezeigt
+
+# Bei Nutzung von 'using' gibt man durch Doppelpunkte getrennt die Spalten an.
+# Einfache Zahlen beziehen sich auf die Spaltennummer (hier: 1, 2 und 3).
+# In runden Klammern kann man rechnen. In diesem Beispiel wird jedoch nur der Konstande Wert 0.7 'berechnet'.
+plot 'Daten/EELS-Spektrum_err.csv' using 1:2:(0.7):3 with xyerrorbars title 'Messung 1 mit Fehlerbalken'
+```
+
+![Diagramm mit Fehlerbalken für die x- und y-Werte](Bilder/EELS-Kohlenstoff_Fehlerbalken.2.png)
+Vergleiche [EELS-Kohlenstoff_Fehlerbalken2.plt][https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff_Fehlerbalken2.plt]
+
+Die Spalte 3 wurde aus den Werten in Spalte 2 berechnet (siehe README.md im Ordner Daten). Dies kann man auch in dieser Stelle anwenden:
+
+```Gnuplot
+# Das $-Zeichen muss innerhalb der Runden Klammer (bei using) benutzt werden, damit man auf die 2te Spalte zugreifen kann.
+# sqrt() ist eine von Gnuplot bereitgestellte Funktion. Es gibt viele weitere, wie z.B. sin() und cos().
+plot 'Daten/EELS-Spektrum_err.csv' using 1:2:(0.7):(2*sqrt($2)) with xyerrorbars title 'Messung 1 mit Fehlerbalken'
+```
+
+Man kann außerdem die Werte aus unterschiedlichen Spalten in eine Rechnung einbeziehen. ``using 1:($2/$3)`` nutzt die Werte aus Spalte 1 als x-Werte und teilt die Werte aus Spalte 2 durch die Werte aus Spalte 3, um die y-Werte zu berechnen.
 
 [download]: https://sourceforge.net/projects/gnuplot/files/gnuplot/
 [EELS-Kohlenstoff1.plt]: https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff1.plt

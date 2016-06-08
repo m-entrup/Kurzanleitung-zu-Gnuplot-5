@@ -17,7 +17,7 @@ Diese Kurzanleitung verwendet die Beispieldateien aus dem Ordner *Daten*. Dort i
 
 Zuerst möchte ich den Datensatz *EELS-Spektrum.msa* begutachten. Dazu führe ich
 
-```
+```Gnuplot
 # Dies ist ein Kommentar.
 # Der Dateiname muss von Anführungszeichen umschlossen sein (egal ob einfache oder doppelte).
 plot 'EELS-Spektrum.msa'
@@ -29,7 +29,7 @@ aus, wodurch sich ein neues Fenster öffnen sollte, welches folgendes Diagramm z
 
 Es ist gut zu sehen, dass sich die 1024 Datenpunkte überlappen. Im Folgenden möchte ich deshalb mit dem Datensatz *EELS-Spektrum_reduced.csv* arbeiten, der nur jeden fünften Datenpunkt enthält.
 
-```
+```Gnuplot
 plot 'EELS-Spektrum_reduced.csv'
 ```
 
@@ -42,7 +42,7 @@ Tipp:
 
 Die bisher erstellten Diagramme sind nicht besonders informativ. Es gibt weder einen Titel, noch sind die Achsen beschriftet. Außerdem zeigt die schlecht platzierte Legende nur den Namen der verwendeten Datei an. Wie es besser geht, dass zeigt [EELS-Kohlenstoff1.plt]. Alle zum Plotten notwendigen Befehle sind in einer Datei zusammengefasst und lassen sich mit ``load 'EELS-Kohlenstoff1.plt'`` in Gnuplot ausführen. Hat man Gnuplot noch nicht gestartet, dann kann man alternativ ``gnuplot5 -p EELS-Kohlenstoff1.plt`` in der Bash ausführen. der Parameter ``-p`` ist notwendig, damit das Diagramm auch angezeigt wird. Schreibt man in eine Datei (siehe Unten), kann man ``-p`` auch weglassen.
 
-```
+```Gnuplot
 # Ermöglicht die direkte Eingabe diverser Sonderzeichen.
 set encoding utf8
 

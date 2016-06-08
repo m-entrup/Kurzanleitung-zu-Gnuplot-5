@@ -40,7 +40,11 @@ Tipp:
 
 ## Das Diagramm verbessern
 
-Die bisher erstellten Diagramme sind nicht besonders informativ. Es gibt weder einen Titel, noch sind die Achsen beschriftet. Außerdem zeigt die schlecht platzierte Legende nur den Namen der verwendeten Datei an. Wie es besser geht, dass zeigt [EELS-Kohlenstoff1.plt]. Alle zum Plotten notwendigen Befehle sind in einer Datei zusammengefasst und lassen sich mit ``load 'EELS-Kohlenstoff1.plt'`` in Gnuplot ausführen. Hat man Gnuplot noch nicht gestartet, dann kann man alternativ ``gnuplot5 -p EELS-Kohlenstoff1.plt`` in der Bash ausführen. der Parameter ``-p`` ist notwendig, damit das Diagramm auch angezeigt wird. Schreibt man in eine Datei (siehe Unten), kann man ``-p`` auch weglassen.
+Die bisher erstellten Diagramme sind nicht besonders informativ. Es gibt weder einen Titel, noch sind die Achsen beschriftet. Außerdem zeigt die schlecht platzierte Legende nur den Namen der verwendeten Datei an. Wie es besser geht, dass zeigt [EELS-Kohlenstoff1.plt].
+
+Alle zum Plotten notwendigen Befehle sind in einer Datei zusammengefasst und lassen sich mit ``load 'EELS-Kohlenstoff1.plt'`` in Gnuplot ausführen. Hat man Gnuplot noch nicht gestartet, dann kann man alternativ ``gnuplot5 -p EELS-Kohlenstoff1.plt`` in der Bash ausführen. der Parameter ``-p`` ist notwendig, damit das Diagramm auch angezeigt wird. Schreibt man in eine Datei (siehe Unten), kann man ``-p`` auch weglassen.
+
+Details zu den verwendeten Vorlagen sind auf [gnuplotting.org] zu finden.
 
 ```Gnuplot
 # Ermöglicht die direkte Eingabe diverser Sonderzeichen.
@@ -51,10 +55,12 @@ set title 'EEL Spektrum der Kohlenstoff K-Kante'
 set xlabel 'Energieverlust [eV]'
 set ylabel 'Intensität [a.u.]'
 
-# Die Legende heißt bei Gnuplot key. Mögliche Optionen sind inside|outside, left|right|center und top|bottom|center (weitere: siehe Anleitung).
+# Die Legende heißt bei Gnuplot key. Mögliche Optionen sind:
+# 	inside|outside, left|right|center und top|bottom|center (weitere: siehe Anleitung).
 set key inside left top
 
-# Es ist sehr praktisch Vorlagen zu verwenden. Auf [gnuplotting.org] wird deren Verwendung detailliert erklärt.
+# Es ist sehr praktisch Vorlagen zu verwenden.
+# Auf gnuplotting.org wird deren Verwendung detailliert erklärt.
 # Gibt an, welches Verzeichnis für 'load' benutzt wird.
 set loadpath './config'
 # Stellt die Achsen weniger in den Vordergrund, damit die eigentlich Daten mehr Aufmerksamkeit erhalten.
@@ -62,8 +68,10 @@ load 'xyborder.cfg'
 # Verbessert die Darstellung der Gitterlinien.
 load 'grid.cfg'
 
-# An 'plot' wird der zusätzliche Parameter 'title' übergeben. Auf diesen muss ein String folgen, der den Datensatz beschreibt.
-# Da sich die Datei 'EELS-Spektrum_reduced.csv' in einem Unterordner (Daten) befindet, müssen wird diesen mit angeben.
+# An 'plot' wird der zusätzliche Parameter 'title' übergeben.
+# Auf den Parameter muss ein String folgen, der den Datensatz beschreibt.
+# Da sich die Datei 'EELS-Spektrum_reduced.csv' in einem Unterordner (Daten) befindet,
+# müssen wird diesen mit angeben.
 plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
 ```
 
@@ -103,4 +111,5 @@ unset output
 ```
 
 [download]: https://sourceforge.net/projects/gnuplot/files/gnuplot/
+[EELS-Kohlenstoff1.plt]: https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff1.plt
 [gnuplotting.org]: http://www.gnuplotting.org/?p=1994

@@ -76,7 +76,9 @@ plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
 ```
 
 ![Verbessertes Diagramm von EELS-Spektrum_reduced.csv](Bilder/EELS-Spektrum_reduced.csv.2.png)
-Vergleiche [EELS-Kohlenstoff1.plt][https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff1.plt]
+
+
+Vergleiche [EELS-Kohlenstoff1.plt](https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff1.plt).
 
 ## Das Diagramm als Bilddatei abspeichern
 
@@ -111,7 +113,7 @@ plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
 unset output
 ```
 
-Vergleiche [EELS-Kohlenstoff2.plt][https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff2.plt]
+Vergleiche [EELS-Kohlenstoff2.plt](https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff2.plt).
 
 ## Fehlerbalken benutzen
 
@@ -137,7 +139,9 @@ plot 'Daten/EELS-Spektrum_err.csv' with yerrorbars title 'Messung 1 mit Fehlerba
 ```
 
 ![Diagramm mit Fehlerbalken für die y-Werte](Bilder/EELS-Kohlenstoff_Fehlerbalken.1.png)
-Vergleiche [EELS-Kohlenstoff_Fehlerbalken1.plt][https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff_Fehlerbalken1.plt]
+
+
+Vergleiche [EELS-Kohlenstoff_Fehlerbalken1.plt](https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff_Fehlerbalken1.plt).
 
 ### X-Y-Fehlerbalken
 
@@ -153,7 +157,9 @@ plot 'Daten/EELS-Spektrum_err.csv' using 1:2:(0.7):3 with xyerrorbars title 'Mes
 ```
 
 ![Diagramm mit Fehlerbalken für die x- und y-Werte](Bilder/EELS-Kohlenstoff_Fehlerbalken.2.png)
-Vergleiche [EELS-Kohlenstoff_Fehlerbalken2.plt][https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff_Fehlerbalken2.plt]
+
+
+Vergleiche [EELS-Kohlenstoff_Fehlerbalken2.plt](https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff_Fehlerbalken2.plt).
 
 Die Spalte 3 wurde aus den Werten in Spalte 2 berechnet (siehe README.md im Ordner Daten). Dies kann man auch in dieser Stelle anwenden:
 

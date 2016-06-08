@@ -69,5 +69,38 @@ plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
 
 ![Verbessertes Diagramm von EELS-Spektrum_reduced.csv](Bilder/EELS-Spektrum_reduced.csv.2.png)
 
+## Das Diagramm als Bilddatei abspeichern
+
+Dieser Schritt ist ganz einfach, wenn man die grafische Oberfläche verwendet. In der Titelleiste jedes Plots zeigt Gnuplot eine Reihe von Buttons an, von denen der erste Button dazu dient, Diagramme zu exportieren/speichern.
+
+Eine weitere Möglichkeit bietet der Befehl ``set terminal``. Man sollte sich zuerst vergewissern, welche Terminals installiert sind. Dazu ruft man ``help terminal`` auf. In dieser Anleitung werde ich mich auf das Terminal *png* beschränken.
+
+```gnuplot
+set encoding utf8
+
+set title 'EEL Spektrum der Kohlenstoff K-Kante'
+set xlabel 'Energieverlust [eV]'
+set ylabel 'Intensität [a.u.]'
+set key inside top left
+
+set loadpath './config'
+load 'xyborder.cfg'
+load 'grid.cfg'
+
+# Nur 3 der nächsten 4 Zeilen Code sind neu.
+# 'png' ist das Terminal, welches verwendet werden soll.
+# Mit 'enhanced' aktiviert man Hoch- und Tiefstellen von Zeichen, sowie weitere Sonderfunktionen.
+# Die Größe wird hier in Pixeln (Breite,Höhe) angegeben.
+# Alternativ können die Einheiten cm und inch benutzt werden. Die Auflösung beträgt dann 72 dpi.
+# Mit 'font' ändert man die Schrift. In diesem Fall wird nur die Schriftgröße angepasst.
+set terminal png enhanced size 800,600 font ',16'
+# dieser Befehl gibt den Namen das Bilddatei an.
+set output 'EELS-Spektrum_reduced.png'
+
+plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
+# Die Datei wird geschlossen, damit man sie Problemlos ansehen kann.
+unset output
+```
+
 [download]: https://sourceforge.net/projects/gnuplot/files/gnuplot/
 [gnuplotting.org]: http://www.gnuplotting.org/?p=1994

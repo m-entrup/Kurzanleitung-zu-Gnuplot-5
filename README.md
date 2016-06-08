@@ -25,7 +25,7 @@ plot 'EELS-Spektrum.msa'
 
 aus, wodurch sich ein neues Fenster öffnen sollte, welches folgendes Diagramm zeigt:
 
-(Diagramm von EELS-Spektrum.msa)[Bilder/EELS-Spektrum.msa.png]
+![Diagramm von EELS-Spektrum.msa](Bilder/EELS-Spektrum.msa.png)
 
 Es ist gut zu sehen, dass sich die 1024 Datenpunkte überlappen. Im Folgenden möchte ich deshalb mit dem Datensatz *EELS-Spektrum_reduced.csv* arbeiten, der nur jeden fünften Datenpunkt enthält.
 
@@ -33,7 +33,7 @@ Es ist gut zu sehen, dass sich die 1024 Datenpunkte überlappen. Im Folgenden m�
 plot 'EELS-Spektrum_reduced.csv'
 ```
 
-(Diagramm von EELS-Spektrum.msa)[Bilder/EELS-Spektrum_reduced.csv.png]
+![Diagramm von EELS-Spektrum_reduced.csv](Bilder/EELS-Spektrum_reduced.csv.png)
 
 Tipp:
 	Normalerweise zeigt Gnuplot keine Gitterlinien an. Diese kann man jedoch über den entsprechenden Button in der grafischen Oberfläche aktivieren, oder man führt den Befehl ``set grid`` aus.

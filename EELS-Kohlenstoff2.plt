@@ -13,3 +13,6 @@ set terminal png enhanced size 800,600 font ',16'
 set output 'EELS-Spektrum_reduced.png'
 
 plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
+
+unset output
+unset terminal

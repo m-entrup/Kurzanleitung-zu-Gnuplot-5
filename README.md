@@ -1,5 +1,9 @@
-# Kurzanleitung-zu-Gnuplot-5
+# Kurzanleitung zu Gnuplot 5
 Eine kurze Einführung in die Verwendung von Gnuplot 5 für Physiker.
+
+## Motivation
+
+Mit der Version 5 hat Gnuplot einige Änderungen bei der Syntax erfahren. Im Internet findet man zwar viele Anleitungen, die einem die Nutzung von Gnuplot erklären, leider beziehen sich diese noch auf Version 4.x. Besonders bei Fehlerbalken und dem Fitten von Funktionen kommt es zu Fehlern, wenn man die Gnuplot 4 Syntax in Gnuplot 5 verwendet. Diese Anleitung bezieht sich nur auf Gnuplot 5 und richtet sich ein Einsteiger, die vorher noch nicht mit Gnuplot gearbeitet haben.
 
 ## Gnuplot installieren und starten
 
@@ -42,9 +46,9 @@ Tipp:
 
 Die bisher erstellten Diagramme sind nicht besonders informativ. Es gibt weder einen Titel, noch sind die Achsen beschriftet. Außerdem zeigt die schlecht platzierte Legende nur den Namen der verwendeten Datei an. Wie es besser geht, dass zeigt [EELS-Kohlenstoff1.plt].
 
-Alle zum Plotten notwendigen Befehle sind in einer Datei zusammengefasst und lassen sich mit ``load 'EELS-Kohlenstoff1.plt'`` in Gnuplot ausführen. Hat man Gnuplot noch nicht gestartet, dann kann man alternativ ``gnuplot5 -p EELS-Kohlenstoff1.plt`` in der Bash ausführen. der Parameter ``-p`` ist notwendig, damit das Diagramm auch angezeigt wird. Schreibt man in eine Datei (siehe Unten), kann man ``-p`` auch weglassen.
+Alle zum Plotten notwendigen Befehle sind in einer Datei zusammengefasst. Mit dem Befehl ``gnuplot5 -p EELS-Kohlenstoff1.plt`` kann man das Script in der Bash ausführen. der Parameter ``-p`` ist notwendig, damit das Diagramm auch angezeigt wird. Schreibt man in eine Datei (siehe Unten), kann man ``-p`` auch weglassen.
 
-Details zu den verwendeten Vorlagen sind auf [gnuplotting.org] zu finden.
+Mit Hilfe von ``load 'EELS-Kohlenstoff1.plt'`` kann man das Script innerhalb von Gnuplot ausführen. Dass das Script ``set loadpath`` benutzt, hat keinen Einfluss darauf, da nur in einem zusätzlichen Verzeichnis nach zu ladenden Dateien gesucht wird. Außerdem sind alle genutzten Befehle noch aktiv und man kann mit ``replot`` den zuletzt genutzten plot-Befehl erneut ausführen.
 
 ```Gnuplot
 # Ermöglicht die direkte Eingabe diverser Sonderzeichen.
@@ -75,10 +79,22 @@ load 'grid.cfg'
 plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
 ```
 
+Details zu den verwendeten Vorlagen sind auf [gnuplotting.org] zu finden.
+
 ![Verbessertes Diagramm von EELS-Spektrum_reduced.csv](Bilder/EELS-Spektrum_reduced.csv.2.png)
 
 
 Vergleiche [EELS-Kohlenstoff1.plt](https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff1.plt).
+
+### Replot verwenden
+
+Dies ist ein einfaches Beispiel, welches die Verwendung von ``replot`` demonstriert:
+
+```Gnuplot
+load 'EELS-Kohlenstoff1.plt'
+set title 'Dies ist ein neuer Titel!'
+replot
+```
 
 ## Das Diagramm als Bilddatei abspeichern
 
@@ -105,12 +121,15 @@ load 'grid.cfg'
 # Alternativ können die Einheiten cm und inch benutzt werden. Die Auflösung beträgt dann 72 dpi.
 # Mit 'font' ändert man die Schrift. In diesem Fall wird nur die Schriftgröße angepasst.
 set terminal png enhanced size 800,600 font ',16'
-# dieser Befehl gibt den Namen das Bilddatei an.
+# Dieser Befehl gibt den Namen der Bilddatei an.
 set output 'EELS-Spektrum_reduced.png'
 
 plot 'Daten/EELS-Spektrum_reduced.csv' title 'Messung 1'
-# Die Datei wird geschlossen, damit man sie Problemlos ansehen kann.
+
+# Die Datei wird geschlossen, damit man sie problemlos ansehen kann.
 unset output
+# Setzt das Terminal auf den Standard zurück.
+unset terminal
 ```
 
 Vergleiche [EELS-Kohlenstoff2.plt](https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff2.plt).
@@ -119,7 +138,7 @@ Vergleiche [EELS-Kohlenstoff2.plt](https://github.com/m-entrup/Kurzanleitung-zu-
 
 Messwerte sind immer mit Unsicherheiten behaftet. Um diese grafisch darzustellen, benutzt man in Gnuplot Fehlerbalken.
 
-Der Datensatz *EELS-Spektrum_err.csv* enthäkt eine zusätzliche Spalte mit den Unsicherheiten der y-Werte. Das folgende Beispiel zeigt, wie man variable und Konstante Unsicherheiten in Gnuplot nutzt.
+Der Datensatz *EELS-Spektrum_err.csv* enthält eine zusätzliche Spalte mit den Unsicherheiten der y-Werte. Die folgenden Beispiele zeigen, wie man variable und Konstante Unsicherheiten in Gnuplot nutzt.
 
 ```Gnuplot
 set encoding utf8
@@ -148,11 +167,11 @@ Vergleiche [EELS-Kohlenstoff_Fehlerbalken1.plt](https://github.com/m-entrup/Kurz
 Für zusätzliche Fehlerbalken für die X-Werte müssen wir den Diagramm-Typ ``xyerrorbars`` verwenden. Dieser erwartet einen Datensatz mit 4 Spalten, den wir mit Hilfe des Parameters ``using`` generieren.
 
 ```Gnuplot
-# Es wird nur die geänderte Code-Zeile gezeigt
+# Es wird nur der im Vergleich zum letzten Beispiel geänderte Code-Zeile gezeigt.
 
 # Bei Nutzung von 'using' gibt man durch Doppelpunkte getrennt die Spalten an.
 # Einfache Zahlen beziehen sich auf die Spaltennummer (hier: 1, 2 und 3).
-# In runden Klammern kann man rechnen. In diesem Beispiel wird jedoch nur der Konstande Wert 0.7 'berechnet'.
+# In runden Klammern kann man rechnen. In diesem Beispiel wird jedoch nur der konstante Wert 0.7 'berechnet'.
 plot 'Daten/EELS-Spektrum_err.csv' using 1:2:(0.7):3 with xyerrorbars title 'Messung 1 mit Fehlerbalken'
 ```
 
@@ -161,7 +180,7 @@ plot 'Daten/EELS-Spektrum_err.csv' using 1:2:(0.7):3 with xyerrorbars title 'Mes
 
 Vergleiche [EELS-Kohlenstoff_Fehlerbalken2.plt](https://github.com/m-entrup/Kurzanleitung-zu-Gnuplot-5/blob/master/EELS-Kohlenstoff_Fehlerbalken2.plt).
 
-Die Spalte 3 wurde aus den Werten in Spalte 2 berechnet (siehe README.md im Ordner Daten). Dies kann man auch in dieser Stelle anwenden:
+Die Spalte 3 wurde aus den Werten in Spalte 2 berechnet (siehe README.md im Ordner Daten). Dies kann man auch direkt im Script anwenden:
 
 ```Gnuplot
 # Das $-Zeichen muss innerhalb der Runden Klammer (bei using) benutzt werden, damit man auf die 2te Spalte zugreifen kann.

@@ -183,9 +183,13 @@ Vergleiche [EELS-Kohlenstoff_Fehlerbalken2.plt](https://github.com/m-entrup/Kurz
 Die Spalte 3 wurde aus den Werten in Spalte 2 berechnet (siehe README.md im Ordner Daten). Dies kann man auch direkt im Script anwenden:
 
 ```Gnuplot
-# Das $-Zeichen muss innerhalb der Runden Klammer (bei using) benutzt werden, damit man auf die 2te Spalte zugreifen kann.
-# sqrt() ist eine von Gnuplot bereitgestellte Funktion. Es gibt viele weitere, wie z.B. sin() und cos().
-plot 'Daten/EELS-Spektrum_err.csv' using 1:2:(0.7):(2*sqrt($2)) with xyerrorbars title 'Messung 1 mit Fehlerbalken'
+# Das $-Zeichen muss innerhalb der Runden Klammer (bei using) benutzt werden
+# damit man auf die 2te Spalte zugreifen kann.
+# sqrt() ist eine von Gnuplot bereitgestellte Funktion.
+# Es gibt viele weitere, wie z.B. sin() und cos().
+# Mit \ zeigt man an, dass der Befehl in der nächsten Zeile fortgesetzt wird.
+plot 'Daten/EELS-Spektrum_err.csv' using 1:2:(0.7):(2*sqrt($2)) with xyerrorbars \
+	title 'Messung 1 mit Fehlerbalken'
 ```
 
 Man kann außerdem die Werte aus unterschiedlichen Spalten in eine Rechnung einbeziehen. ``using 1:($2/$3)`` nutzt die Werte aus Spalte 1 als x-Werte und teilt die Werte aus Spalte 2 durch die Werte aus Spalte 3, um die y-Werte zu berechnen.

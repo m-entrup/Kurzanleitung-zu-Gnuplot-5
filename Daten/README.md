@@ -55,7 +55,7 @@ unset table
 
 Häufig möchte man eine lineare Abhängigkeit abbilden. Da der Untergrund beim EELS in Form einer Potenzfunktion verläuft, lässt sich durch logarithmische Darstellung der beiden Achsen eine linearer Verlauf erreichen. Diese Datei enthält schon die doppelt logarithmiertem Datenpunkte.
 
-'''
+```
 set table 'EELS-Spektrum_log.csv'
 
 # Auf die ersten beiden Spalten wenden wir die Funktion 'log' an.
